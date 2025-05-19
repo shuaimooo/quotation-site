@@ -253,54 +253,7 @@
                         <td><input type="text" class="note-input"></td>
                         <td><input type="number" class="amount-input" min="0" value="0" readonly></td>
                     </tr>
-                    <tr>
-                        <td><input type="date" class="date-input"></td>
-                        <td><input type="text" class="event-input" maxlength="15"></td>
-                        <td><input type="number" class="people-input" min="0" value="0"></td>
-                        <td><input type="time" class="start-time-input"></td>
-                        <td><input type="time" class="end-time-input"></td>
-                        <td class="text-center"><input type="checkbox" class="height-input"></td>
-                        <td class="text-center"><input type="checkbox" class="control-input"></td>
-                        <td><input type="number" class="overtime-input" min="0" value="0"></td>
-                        <td><input type="text" class="note-input"></td>
-                        <td><input type="number" class="amount-input" min="0" value="0" readonly></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" class="date-input"></td>
-                        <td><input type="text" class="event-input" maxlength="15"></td>
-                        <td><input type="number" class="people-input" min="0" value="0"></td>
-                        <td><input type="time" class="start-time-input"></td>
-                        <td><input type="time" class="end-time-input"></td>
-                        <td class="text-center"><input type="checkbox" class="height-input"></td>
-                        <td class="text-center"><input type="checkbox" class="control-input"></td>
-                        <td><input type="number" class="overtime-input" min="0" value="0"></td>
-                        <td><input type="text" class="note-input"></td>
-                        <td><input type="number" class="amount-input" min="0" value="0" readonly></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" class="date-input"></td>
-                        <td><input type="text" class="event-input" maxlength="15"></td>
-                        <td><input type="number" class="people-input" min="0" value="0"></td>
-                        <td><input type="time" class="start-time-input"></td>
-                        <td><input type="time" class="end-time-input"></td>
-                        <td class="text-center"><input type="checkbox" class="height-input"></td>
-                        <td class="text-center"><input type="checkbox" class="control-input"></td>
-                        <td><input type="number" class="overtime-input" min="0" value="0"></td>
-                        <td><input type="text" class="note-input"></td>
-                        <td><input type="number" class="amount-input" min="0" value="0" readonly></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" class="date-input"></td>
-                        <td><input type="text" class="event-input" maxlength="15"></td>
-                        <td><input type="number" class="people-input" min="0" value="0"></td>
-                        <td><input type="time" class="start-time-input"></td>
-                        <td><input type="time" class="end-time-input"></td>
-                        <td class="text-center"><input type="checkbox" class="height-input"></td>
-                        <td class="text-center"><input type="checkbox" class="control-input"></td>
-                        <td><input type="number" class="overtime-input" min="0" value="0"></td>
-                        <td><input type="text" class="note-input"></td>
-                        <td><input type="number" class="amount-input" min="0" value="0" readonly></td>
-                    </tr>
+
                 </tbody>
             </table>
             
@@ -532,7 +485,7 @@
                 const { jsPDF } = window.jspdf;
                 
                 html2canvas(document.getElementById('invoice-form'), {
-                    scale: 1.5,
+                    scale: 2,
                     useCORS: true,
                     logging: false
                 }).then(canvas => {
