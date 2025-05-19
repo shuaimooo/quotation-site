@@ -92,8 +92,8 @@
     <div class="container mx-auto px-4 py-8 max-w-5xl">
         <div id="invoice-form" class="form-container p-6 rounded-lg">
             <div class="mb-6 text-center">
-                <h1 class="text-2xl font-bold mb-1">LUMASONIX x PROFESSIONAL</h1>
-                <h2 class="text-lg font-medium mb-1">專業技術支援 x 人力媒合平台</h2>
+                <h1 class="text-3xl font-bold mb-1">LUMASONIX x PROFESSIONAL</h1>
+                <h2 class="text-xl font-medium mb-1">專業技術支援 x 人力媒合平台</h2>
             </div>
             
             <div class="flex justify-between mb-6">
@@ -106,7 +106,7 @@
                 </div>
             </div>
             
-            <h2 class="text-lg font-bold mb-4">活動支援統計</h2>
+            <h2 class="text-xl font-bold mb-4">活動支援統計</h2>
             <table class="mb-6">
                 <thead>
                     <tr class="bg-gray-100">
@@ -128,7 +128,7 @@
                         <td class="text-right"><span id="staff-subtotal">0</span></td>
                     </tr>
                     <tr>
-                        <td>(燈控/音控)</td>
+                        <td>(燈控/音控/視訊)</td>
                         <td class="text-center">
                             <input type="number" id="tech-qty" class="text-center" value="0" min="0">
                         </td>
@@ -188,7 +188,7 @@
                 </tfoot>
             </table>
             
-            <h2 class="text-lg font-bold mb-4">活動支援明細</h2>
+            <h2 class="text-xl font-bold mb-4">活動支援明細</h2>
             <table class="mb-6">
                 <thead>
                     <tr class="bg-gray-100">
@@ -327,14 +327,14 @@
 
             </div>
             
-            <div class="flex justify-center space-x-4 no-print mt-8">
-                <button id="add-row" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg btn">
+            <div class="flex justify-end space-x-4 no-print mt-8">
+                <button id="add-row" class="text-2xl bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg btn">
                     新增明細行
                 </button>
-                <button id="download-pdf" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg btn">
+                <button id="download-pdf" class="text-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg btn">
                     下載 PDF
                 </button>
-                <button id="reset-form" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg btn">
+                <button id="reset-form" class="text-2xl bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg btn">
                     重置請款單
                 </button>
             </div>
@@ -359,8 +359,8 @@
                 const overtimeSubtotal = overtimeQty * 350;
                 const otherSubtotal = otherPrice;
                 
-                // 行政執行費用 = 人事支援 * 13%
-                const adminSubtotal = Math.round(staffQty * 0.13 * 2500);
+                // 行政執行費用 = 人事支援 * 10%
+                const adminSubtotal = Math.round(staffQty * 0.10 * 2500);
                 
                 const total = staffSubtotal + techSubtotal + spotlightSubtotal + heightSubtotal + 
                               overtimeSubtotal + otherSubtotal + adminSubtotal;
@@ -377,10 +377,12 @@
             
             // Calculate amount for each detail row
             function calculateDetailAmount(row) {
-                const peopleCount = parseInt(row.querySelector('.people-input').value) || 0;
-                const heightChecked = row.querySelector('.height-input').checked;
-                const controlChecked = row.querySelector('.control-input').checked;
-                const overtimeHours = parseInt(row.querySelector('.overtime-input').value) || 0;
+               const staffQty = parseInt(document.getElementById('staff-qty').value) || 0;
+                const techQty = parseInt(document.getElementById('tech-qty').value) || 0;
+                const spotlightQty = parseInt(document.getElementById('spotlight-qty').value) || 0;
+                const heightQty = parseInt(document.getElementById('height-qty').value) || 0;
+                const overtimeQty = parseInt(document.getElementById('overtime-qty').value) || 0;
+                const otherPrice = parseInt(document.getElementById('other-price').value) || 0;
                 
                 let amount = peopleCount * 2500;
                 if (heightChecked) amount += 1000;
@@ -404,12 +406,13 @@
                 let totalAmount = 0;
                 
                 rows.forEach(row => {
-                    const peopleCount = parseInt(row.querySelector('.people-input').value) || 0;
-                    const heightChecked = row.querySelector('.height-input').checked;
-                    const controlChecked = row.querySelector('.control-input').checked;
-                    const overtimeHours = parseInt(row.querySelector('.overtime-input').value) || 0;
-                    const amount = parseInt(row.querySelector('.amount-input').value) || 0;
-                    
+                const staffQty = parseInt(document.getElementById('staff-qty').value) || 0;
+                const techQty = parseInt(document.getElementById('tech-qty').value) || 0;
+                const spotlightQty = parseInt(document.getElementById('spotlight-qty').value) || 0;
+                const heightQty = parseInt(document.getElementById('height-qty').value) || 0;
+                const overtimeQty = parseInt(document.getElementById('overtime-qty').value) || 0;
+                const otherPrice = parseInt(document.getElementById('other-price').value) || 0;
+                 
                     totalPeople += peopleCount;
                     if (heightChecked) totalHeight++;
                     if (controlChecked) totalControl++;
@@ -424,7 +427,7 @@
                 document.getElementById('overtime-qty').value = totalOvertime;
                 
                 // Calculate admin fee and total
-                const adminFee = Math.round(totalPeople * 0.13 * 2500);
+                const adminFee = Math.round(totalPeople * 0.10 * 2500);
                 const otherPrice = parseInt(document.getElementById('other-price').value) || 0;
                 const grandTotal = totalAmount + adminFee + otherPrice;
                 
@@ -509,7 +512,7 @@
             const day = today.getDate().toString().padStart(2, '0');
             
             const dateFields = document.querySelectorAll('.date-field');
-            if (dateFields.length >= 6) {
+            if (dateFields.length >= 4) {
                 dateFields[0].textContent = yearDigits[0];
                 dateFields[1].textContent = yearDigits[1];
                 dateFields[2].textContent = month[0];
